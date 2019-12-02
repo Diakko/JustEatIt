@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,11 +18,12 @@
             </intent-filter>
         </activity>
 
-    </application>
-    <service
-    ​android:name=".TestJobService"
-    ​android:label="Word service"
-    ​android:permission="android.permission.BIND_JOB_SERVICE" >
+        <service android:name=".testJobService"
+                 android:label="Word Service"
+                 android:permission="android:permission.BIND_JOB_SERVICE" ></service>
 
-</service>
+
+
+    </application>
+
 </manifest>

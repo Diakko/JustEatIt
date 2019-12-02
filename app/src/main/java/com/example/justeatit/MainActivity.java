@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         dailyCal = mPreferences.getInt(DAILY_CALORIES_KEY, 0);
         totalCal = mPreferences.getInt(TOTAL_CALORIES_KEY, 0);
         averageCal = mPreferences.getInt(AVERAGE_CALORIES_KEY, 0);
-        calories = new Calories(int dailyCal)
+        calories = new Calories(dailyCal, totalCal, averageCal);
+
 
 
     }
@@ -35,15 +36,12 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putInt(DAILY_CALORIES_KEY, calories.getDailyCount());
         preferencesEditor.putInt(TOTAL_CALORIES_KEY, calories.getTotalCount());
         preferencesEditor.putInt(AVERAGE_CALORIES_KEY, calories.getAverageCount());
+        preferencesEditor.apply();
     }
     ScheduledExecutorService scheduler =
             Executors.newSingleThreadScheduledExecutor();
 
     private void resetCalories() {
-        scheduler.scheduleAtFixedRate (new Runnable() {
-                    public void run() {
-                        // call service
-                    }
-                }, 0, 10, TimeUnit.MINUTES);
+
     }
 }
