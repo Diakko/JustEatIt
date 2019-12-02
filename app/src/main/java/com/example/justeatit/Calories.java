@@ -11,6 +11,9 @@ public class Calories {
         this.dailyCount += calories;
         this.totalCount += calories;
     }
+    public void resetDailyCalories(){
+        this.dailyCount = 0;
+    }
 
     public int getDailyCount(){
         return this.dailyCount;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF4400"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <Button
@@ -13,8 +13,10 @@
         android:layout_height="60dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:background="@color/buttonBackground"
         android:onClick="sendButtonPressed"
         android:text="@string/sendButton"
+        android:textColor="@color/textColor"
         app:layout_constraintBaseline_toBaselineOf="@+id/foodBar"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -77,6 +79,18 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/profile_picture"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/resetDailyCalories"
+        android:layout_width="85dp"
+        android:layout_height="26dp"
+        android:background="@color/buttonBackground"
+        android:onClick="resetCaloriesButtonPressed"
+        android:text="@string/resetDailyCalories"
+        android:textColor="@color/textColor"
+        android:textSize="6sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

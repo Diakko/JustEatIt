@@ -47,19 +47,24 @@ public class MainActivity extends AppCompatActivity {
         updateUI();
     }
 
-    private void resetCalories() {
-
+    public void resetCaloriesButtonPressed(View v) {
+        Log.i("Button", "Reset-button pressed");
+        calories.resetDailyCalories();
+        updateUI();
     }
 
     public void sendButtonPressed(View v){
-        Log.i("Laskuri", "Lähetä-nappia painettu");
+        Log.i("Button", "Lähetä-nappia painettu");
         EditText editText = findViewById(R.id.foodBar);
         String message = editText.getText().toString();
         EditText editText1 = findViewById(R.id.insertCalories);
         int caloriesSent = Integer.parseInt(editText1.getText().toString());
         calories.addCalories(caloriesSent);
         updateUI();
+    }
 
+    public void profileButtonPressed(View v){
+        Log.i("Button", "Profiili-nappia painettu");
     }
 
     public void updateUI(){
