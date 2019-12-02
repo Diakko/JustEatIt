@@ -10,14 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
 public class MainActivity extends AppCompatActivity {
     private final static String DAILY_CALORIES_KEY = "Daily_calories";
     private final static String TOTAL_CALORIES_KEY = "Total_Calories";
@@ -70,14 +62,14 @@ public class MainActivity extends AppCompatActivity {
     public void profileButtonPressed(View v){
         Log.i("Button", "Profiili-nappia painettu");
         Intent intent = new Intent(this, ProfileActivity.class);
-        TextView tv1 =findViewById(R.id.caloriesCount);
+        TextView tv1 =findViewById(R.id.caloriesCount2);
         String message = tv1.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
     public void updateUI(){
-        TextView tv1 =findViewById(R.id.caloriesCount);
+        TextView tv1 =findViewById(R.id.caloriesCount2);
         tv1.setText(calories.getDailyCountString());
     }
 }

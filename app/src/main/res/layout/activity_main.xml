@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/caloriesCount"
+        android:id="@+id/caloriesCount2"
         android:layout_width="92dp"
         android:layout_height="43dp"
         android:layout_marginStart="20dp"

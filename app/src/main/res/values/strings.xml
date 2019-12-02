@@ -3,6 +3,7 @@
     <string name="foodBar">\[Insert food]</string>
     <string name="sendButton">SEND</string>
     <string name="caloriesCount">0</string>
+    <string name="caloriesCounter">0</string>
     <string name="caloriesText">Calories today</string>
     <string name="insertCalories">0</string>
     <string name="empty">\\</string>
