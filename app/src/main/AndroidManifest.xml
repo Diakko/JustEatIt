@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
+    <service
+    ​android:name=".TestJobService"
+    ​android:label="Word service"
+    ​android:permission="android.permission.BIND_JOB_SERVICE" >
+
+</service>
 </manifest>
