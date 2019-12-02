@@ -4,7 +4,9 @@
     <string name="sendButton">SEND</string>
     <string name="caloriesCount">0</string>
     <string name="caloriesCounter">0</string>
-    <string name="caloriesText">Calories today</string>
+    <string name="caloriesTodayText">Calories Today</string>
+    <string name="caloriesTotalText">Calories Total</string>
+    <string name="caloriesAverageText">Calories Average</string>
     <string name="insertCalories">0</string>
     <string name="empty">\\</string>
     <string name="resetDailyCalories">Reset Daily Calories</string>

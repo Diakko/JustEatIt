@@ -4,28 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".ProfileActivity">
 
     <TextView
-        android:id="@+id/calories2"
+        android:id="@+id/caloriesTotalCount"
+        android:layout_width="105dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/backgroundColor"
+        android:text="@string/caloriesCount"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/caloriesTotalText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.259"
+        app:layout_constraintStart_toEndOf="@+id/caloriesTotalText" />
+
+    <TextView
+        android:id="@+id/caloriesTodayText"
         android:layout_width="164dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="180dp"
-        android:text="@string/caloriesText"
+        android:background="@color/backgroundColor"
+        android:text="@string/caloriesTodayText"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/caloriesCount2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/caloriesTodayCount"
+        android:layout_width="102dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/backgroundColor"
         android:text="@string/caloriesCount"
+        android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/calories2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/caloriesTodayText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/calories2" />
+        app:layout_constraintStart_toEndOf="@+id/caloriesTodayText" />
+
+    <TextView
+        android:id="@+id/caloriesTotalText"
+        android:layout_width="163dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/backgroundColor"
+        android:text="@string/caloriesTotalText"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caloriesTodayText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
