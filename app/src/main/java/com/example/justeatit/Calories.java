@@ -7,6 +7,10 @@ public class Calories {
         this.dailyCount = dailyCount;
         this.totalCount = totalCount;
     }
+    public void addCalories(int calories){
+        this.dailyCount += calories;
+        this.totalCount += calories;
+    }
 
     public int getDailyCount(){
         return this.dailyCount;

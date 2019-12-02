@@ -4,6 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -26,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         totalCal = mPreferences.getInt(TOTAL_CALORIES_KEY, 0);
         averageCal = mPreferences.getInt(AVERAGE_CALORIES_KEY, 0);
         calories = new Calories(dailyCal, totalCal, averageCal);
+        updateUI();
 
 
 
@@ -36,12 +43,27 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putInt(DAILY_CALORIES_KEY, calories.getDailyCount());
         preferencesEditor.putInt(TOTAL_CALORIES_KEY, calories.getTotalCount());
         preferencesEditor.putInt(AVERAGE_CALORIES_KEY, calories.getAverageCount());
-        preferencesEditor.apply();
+
+        updateUI();
     }
-    ScheduledExecutorService scheduler =
-            Executors.newSingleThreadScheduledExecutor();
 
     private void resetCalories() {
 
+    }
+
+    public void sendButtonPressed(View v){
+        Log.i("Laskuri", "Lähetä-nappia painettu");
+        EditText editText = findViewById(R.id.foodBar);
+        String message = editText.getText().toString();
+        EditText editText1 = findViewById(R.id.insertCalories);
+        int caloriesSent = Integer.parseInt(editText1.getText().toString());
+        calories.addCalories(caloriesSent);
+        updateUI();
+
+    }
+
+    public void updateUI(){
+        TextView tv1 =findViewById(R.id.caloriesCount);
+        tv1.setText(calories.getDailyCountString());
     }
 }

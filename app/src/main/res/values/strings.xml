@@ -5,4 +5,5 @@
     <string name="caloriesCount">0</string>
     <string name="caloriesText">Calories today</string>
     <string name="insertCalories">0</string>
+    <string name="empty">\\</string>
 </resources>
