@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putInt(DAILY_CALORIES_KEY, calories.getDailyCount());
         preferencesEditor.putInt(TOTAL_CALORIES_KEY, calories.getTotalCount());
         preferencesEditor.putInt(AVERAGE_CALORIES_KEY, calories.getAverageCount());
-
         updateUI();
     }
 
