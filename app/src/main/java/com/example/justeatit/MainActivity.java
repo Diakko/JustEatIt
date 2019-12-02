@@ -2,6 +2,7 @@ package com.example.justeatit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,10 +16,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity {
     private final static String DAILY_CALORIES_KEY = "Daily_calories";
     private final static String TOTAL_CALORIES_KEY = "Total_Calories";
     private final static String AVERAGE_CALORIES_KEY = "Average_Calories";
+    public static final String EXTRA_MESSAGE = "Profile_activity";
     private int dailyCal,totalCal, averageCal;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.android.JustEatIt";
@@ -65,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void profileButtonPressed(View v){
         Log.i("Button", "Profiili-nappia painettu");
+        Intent intent = new Intent(this, ProfileActivity.class);
+        TextView tv1 =findViewById(R.id.caloriesCount);
+        String message = tv1.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
     public void updateUI(){
