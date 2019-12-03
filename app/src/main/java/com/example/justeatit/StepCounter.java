@@ -1,5 +1,8 @@
 package com.example.justeatit;
 
+/**
+ * (c) Samuel Ahjoniemi
+ */
 public class StepCounter {
 
     private int steps;

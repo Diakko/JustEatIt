@@ -1,6 +1,7 @@
 package com.example.justeatit;
+
 /**
- * (C) Matias Hätönen
+ * (c) Matias Hätönen
  */
 public class Calories {
     private int dailyCount, totalCount, averageCount;
@@ -37,3 +38,4 @@ public class Calories {
         return Integer.toString(this.dailyCount);
     }
 }
+
