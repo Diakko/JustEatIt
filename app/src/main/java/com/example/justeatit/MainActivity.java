@@ -16,8 +16,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * (C) Matias Hätönen & Samuel Ahjoniemi
+ */
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -28,15 +40,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private final static String DAILY_CALORIES_KEY = "Daily_calories";
     private final static String TOTAL_CALORIES_KEY = "Total_Calories";
     private final static String AVERAGE_CALORIES_KEY = "Average_Calories";
+    private final static String ARRAYLIST_KEY = "Arraylist";
     private final static String DAILY_STEPS_KEY = "Daily_Steps";
     public static final String EXTRA_MESSAGE = "Profile_activity1";
     public static final String EXTRA_MESSAGE1 = "Profile_activity2";
     public static final String EXTRA_MESSAGE2 = "Profile_activity3";
+    private final static String TIME_OF_CLICK = "Time_of_click";
+    private final static String ERROR_MESSAGE = "Error";
+    /**
+     * Making a save-file for few values in SharedPreferences
+     */
     public static final String EXTRA_MESSAGE3 = "profile_activity4";
     private int dailyCal,totalCal, averageCal;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.android.JustEatIt";
     private Calories calories;
+    ArrayList<Ruoat> ruoat = new ArrayList<>();
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.ENGLISH);
+    String currentDateandTime = sdf.format(new Date());
     private Ruoat ruoat;
     ArrayList<Ruoat> Ruoat = new ArrayList<>();
     StepCounter dailysteps = new StepCounter(0);
@@ -48,25 +70,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
-        dailyCal = mPreferences.getInt(DAILY_CALORIES_KEY, 0);
-        totalCal = mPreferences.getInt(TOTAL_CALORIES_KEY, 0);
-        averageCal = mPreferences.getInt(AVERAGE_CALORIES_KEY, 0);
+        int dailyCal = mPreferences.getInt(DAILY_CALORIES_KEY, 0);
+        int totalCal = mPreferences.getInt(TOTAL_CALORIES_KEY, 0);
+        int averageCal = mPreferences.getInt(AVERAGE_CALORIES_KEY, 0);
         calories = new Calories(dailyCal, totalCal, averageCal);
         dailysteps.setValue(mPreferences.getInt(DAILY_STEPS_KEY, 0));
         dailystepcounter = (TextView) findViewById(R.id.dailystepcounter);
         updateUI();
 
-
-
     }
     protected void onPause() {
         super.onPause();
+        Gson gson = new Gson();
+        String json = gson.toJson(ruoat);
+
         running = false;
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         preferencesEditor.putInt(DAILY_CALORIES_KEY, calories.getDailyCount());
         preferencesEditor.putInt(TOTAL_CALORIES_KEY, calories.getTotalCount());
         preferencesEditor.putInt(AVERAGE_CALORIES_KEY, calories.getAverageCount());
         preferencesEditor.putInt(DAILY_STEPS_KEY, dailysteps.stepsNow());
+        preferencesEditor.putStringSet(ARRAYLIST_KEY, oos.);
         preferencesEditor.apply();
 
         updateUI();
@@ -84,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+
+
     public void resetCaloriesButtonPressed(View v) {
         Log.i("Button", "Reset-button pressed");
         calories.resetDailyCalories();
@@ -94,17 +120,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void sendButtonPressed(View v){
         Log.i("Button", "Lähetä-nappia painettu");
         EditText editText = findViewById(R.id.foodBar);
-        String ruoka = editText.getText().toString();
+        String foodRead = editText.getText().toString();
         EditText editText1 = findViewById(R.id.insertCalories);
         int caloriesSent = Integer.parseInt(editText1.getText().toString());
-        calories.addCalories(caloriesSent);
+        if (caloriesSent > 0 && !foodRead.equals("[Insert food]")){
+            calories.addCalories(caloriesSent);
+            Log.i(TIME_OF_CLICK, currentDateandTime);
+            ruoat.add( new Ruoat(currentDateandTime, foodRead, caloriesSent));
+
+        }   else {
+            Log.d(ERROR_MESSAGE, "No calories and/or item");
+        }
         updateUI();
     }
 
     public void profileButtonPressed(View v){
         Log.i("Button", "Profiili-nappia painettu");
         Intent intent = new Intent(this, ProfileActivity.class);
-        TextView tv1 = findViewById(R.id.caloriesTodayCount);
         String message1 = calories.getDailyCountString();
         String message2 = calories.getTotalCountString();
         String message3 = calories.getAverageCountString();

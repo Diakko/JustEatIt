@@ -1,11 +1,15 @@
 package com.example.justeatit;
 
 import androidx.annotation.NonNull;
-
+/**
+ * (C) Matias Hätönen
+ */
 public class Ruoat {
     private String ruoka;
     private int kalorit;
-    public Ruoat(String ruoka, int kalorit){
+    private String aika;
+    public Ruoat(String aika, String ruoka, int kalorit){
+        this.aika = aika;
         this.ruoka = ruoka;
         this.kalorit = kalorit;
     }
@@ -15,6 +19,9 @@ public class Ruoat {
     }
     public String getKalorit(){
         return Integer.toString(this.kalorit);
+    }
+    public String getAika(){
+        return this.aika;
     }
 
     @NonNull

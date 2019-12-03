@@ -1,5 +1,7 @@
 package com.example.justeatit;
-
+/**
+ * (C) Matias Hätönen
+ */
 public class Calories {
     private int dailyCount, totalCount, averageCount;
     public Calories(int dailyCount, int totalCount, int averageCount){

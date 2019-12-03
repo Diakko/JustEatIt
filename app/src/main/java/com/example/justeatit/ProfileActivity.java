@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
+/**
+ * (C) Samuel Ahjoniemi
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     @Override
