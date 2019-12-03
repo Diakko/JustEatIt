@@ -12,4 +12,6 @@
     <string name="resetDailyCalories">Reset Daily Calories</string>
     <string name="steps">Daily steps</string>
     <string name="stepCounter">0</string>
+    <string name="totalSteps">Total steps</string>
+    <string name="back">Back</string>
 </resources>
