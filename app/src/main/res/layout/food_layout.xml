@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="100sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/timestamp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +25,10 @@
         android:layout_height="200dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="100sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/calories"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodItem" />
 
@@ -37,9 +38,44 @@
         android:layout_height="200dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="100sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timestamp" />
+
+    <TextView
+        android:id="@+id/foodItemText"
+        android:layout_width="204dp"
+        android:layout_height="34dp"
+        android:text="@string/foodItemText"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timeStampText"
+        android:layout_width="204dp"
+        android:layout_height="34dp"
+        android:text="@string/timeStampText"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/timestamp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItem" />
+
+    <TextView
+        android:id="@+id/caloriesText"
+        android:layout_width="204dp"
+        android:layout_height="34dp"
+        android:text="@string/caloriesText"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/calories"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timestamp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,85 +9,73 @@
 
     <TextView
         android:id="@+id/caloriesTotalCount"
-        android:layout_width="135dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesCount"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/stepsToday"
+        app:layout_constraintBaseline_toBaselineOf="@+id/caloriesTotalText"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/caloriesTodayText"
-        android:layout_width="135dp"
+        android:layout_width="175dp"
         android:layout_height="35dp"
+        android:layout_marginTop="80dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesTodayText"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/caloriesTotalText"
-        app:layout_constraintEnd_toStartOf="@+id/caloriesTodayCount"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/caloriesTodayCount"
-        android:layout_width="135dp"
-        android:layout_height="37dp"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesCount"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/caloriesTotalCount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/caloriesTodayText"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/caloriesTotalText"
-        android:layout_width="135dp"
+        android:layout_width="175dp"
         android:layout_height="35dp"
+        android:layout_marginTop="24dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesTotalText"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/caloriesTotalCount"
-        app:layout_constraintHorizontal_bias="0.723"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.921" />
+        app:layout_constraintTop_toBottomOf="@+id/caloriesTodayText" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="120dp"
+        android:layout_width="175dp"
         android:layout_height="35dp"
+        android:layout_marginTop="24dp"
         android:text="@string/steps"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/stepsToday"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.902" />
+        app:layout_constraintTop_toBottomOf="@+id/caloriesTotalText" />
 
     <TextView
         android:id="@+id/stepsToday"
-        android:layout_width="120dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginLeft="62dp"
         android:text="@string/stepCounter"
         android:textColor="#000000"
         android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/caloriesTotalCount" />
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <ListView
         android:id="@+id/foodItemsLayout"
@@ -100,34 +88,31 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-        app:layout_constraintBottom_toTopOf="@+id/stepsTotal"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" /><![CDATA[
+    app:layout_constraintBottom_toTopOf="@+id/stepsTotal"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+    ]]>
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="134dp"
+        android:layout_width="175dp"
         android:layout_height="35dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="24dp"
         android:text="@string/totalSteps"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/stepsTotal"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/stepsTotal"
-        android:layout_width="134dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="192dp"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
         android:text="@string/stepCounter"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button

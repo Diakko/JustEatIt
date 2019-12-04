@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public static final String EXTRA_MESSAGE3 = "Profile_activity3";
     public static final String EXTRA_MESSAGE4 = "Profile_activity4";
     public static final String EXTRA_MESSAGE5 = "Profile_activity5";
+    public static final String EXTRA_MESSAGE6 = "Profile_activity6";
     private final static String TIME_OF_CLICK = "Time_of_click";
     private final static String ERROR_MESSAGE = "Error";
     private final static String TOTAL_STEPS_KEY = "Total_Steps";
@@ -94,17 +95,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onClick(View v) {
                 Log.i("Button", "Profiili-nappia painettu");
+                Gson gson = new Gson();
+                String json = gson.toJson(ruoat);
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 String message1 = calories.getDailyCountString();
                 String message2 = calories.getTotalCountString();
                 String message3 = calories.getAverageCountString();
                 int dailyStepCount = dailysteps.stepsNow();
                 int totalStepCount = totalsteps.stepsNow();
-                intent.putExtra(EXTRA_MESSAGE, message1);
-                intent.putExtra(EXTRA_MESSAGE1, message2);
-                intent.putExtra(EXTRA_MESSAGE2, message3);
-                intent.putExtra(EXTRA_MESSAGE3, dailyStepCount);
-                intent.putExtra(EXTRA_MESSAGE4, totalStepCount);
+                intent.putExtra(EXTRA_MESSAGE1, message1);
+                intent.putExtra(EXTRA_MESSAGE2, message2);
+                intent.putExtra(EXTRA_MESSAGE3, message3);
+                intent.putExtra(EXTRA_MESSAGE4, dailyStepCount);
+                intent.putExtra(EXTRA_MESSAGE5, totalStepCount);
+                intent.putExtra(EXTRA_MESSAGE6, json);
                 startActivityForResult(intent, 1);
             }
         });
@@ -170,8 +174,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void profileButtonPressed(View v){
-        Gson gson = new Gson();
-        String json = gson.toJson(ruoat);
 
         Log.i("Button", "Profiili-nappia painettu");
         Intent intent = new Intent(this, ProfileActivity.class);
@@ -183,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         intent.putExtra(EXTRA_MESSAGE2, message2);
         intent.putExtra(EXTRA_MESSAGE3, message3);
         intent.putExtra(EXTRA_MESSAGE4, dailystepcount);
-        intent.putExtra(EXTRA_MESSAGE5, json);
 
         startActivity(intent);
     }
@@ -211,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1){

@@ -14,4 +14,8 @@
     <string name="stepCounter">0</string>
     <string name="totalSteps">Total steps</string>
     <string name="back">Back</string>
+    <string name="caloriesText">Calories:</string>
+    <string name="foodItemText">Food Item</string>
+    <string name="timeStampText">Time of consumption</string>
+
 </resources>
