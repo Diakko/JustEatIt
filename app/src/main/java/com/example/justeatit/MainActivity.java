@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public static final String EXTRA_MESSAGE5 = "Profile_activity5";
     private final static String TIME_OF_CLICK = "Time_of_click";
     private final static String ERROR_MESSAGE = "Error";
+    private final static String TOTAL_STEPS_KEY = "Total_Steps";
     private final static String TEST_MESSAGE = "testiviesti";
     /**
      * Making a save-file for few values in SharedPreferences
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.ENGLISH);
     String currentDateandTime = sdf.format(new Date());
     StepCounter dailysteps = new StepCounter(0);
+    StepCounter totalsteps = new StepCounter(0);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +85,30 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         calories = new Calories(dailyCal, totalCal, averageCal);
         dailysteps.setValue(mPreferences.getInt(DAILY_STEPS_KEY, 0));
-        dailystepcounter = findViewById(R.id.dailystepcounter);
+        totalsteps.setValue(mPreferences.getInt(TOTAL_STEPS_KEY, 0));
+        dailystepcounter = (TextView) findViewById(R.id.dailystepcounter);
         updateUI();
+
+        Button profileButton = findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Button", "Profiili-nappia painettu");
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                String message1 = calories.getDailyCountString();
+                String message2 = calories.getTotalCountString();
+                String message3 = calories.getAverageCountString();
+                int dailyStepCount = dailysteps.stepsNow();
+                int totalStepCount = totalsteps.stepsNow();
+                intent.putExtra(EXTRA_MESSAGE, message1);
+                intent.putExtra(EXTRA_MESSAGE1, message2);
+                intent.putExtra(EXTRA_MESSAGE2, message3);
+                intent.putExtra(EXTRA_MESSAGE3, dailyStepCount);
+                intent.putExtra(EXTRA_MESSAGE4, totalStepCount);
+                startActivityForResult(intent, 1);
+            }
+        });
+
     }
     protected void onPause() {
         super.onPause();
@@ -99,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         preferencesEditor.putInt(DAILY_STEPS_KEY, dailysteps.stepsNow());
         preferencesEditor.putString(ARRAYLIST_KEY, json);
         preferencesEditor.commit();
+        preferencesEditor.putInt(TOTAL_STEPS_KEY, totalsteps.stepsNow());
+        //preferencesEditor.putStringSet(ARRAYLIST_KEY, oos.);
+        preferencesEditor.apply();
 
         updateUI();
     }
@@ -173,11 +201,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         dailysteps.addStep();
+        totalsteps.addStep();
         dailystepcounter.setText(""+dailysteps.stepsNow());
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy){
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1){
+            if (requestCode == RESULT_OK) {
+                int dailyBack = data.getIntExtra("number1", 0);
+                int totalBack = data.getIntExtra("number2", 0);
+                dailysteps.setValue(dailyBack);
+                totalsteps.setValue(totalBack);
+            }if (resultCode == RESULT_CANCELED){
+                setTitle("VIRHE TAPAHTUNUT");
+            }
+        }
     }
 }
