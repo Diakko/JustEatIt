@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private final static String ERROR_MESSAGE = "Error";
     private final static String TOTAL_STEPS_KEY = "Total_Steps";
     private final static String TEST_MESSAGE = "testiviesti";
-    /**
-     * Making a save-file for few values in SharedPreferences
-     */
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.android.JustEatIt";
     private Calories calories;
@@ -66,6 +63,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String currentDateandTime = sdf.format(new Date());
     StepCounter dailysteps = new StepCounter(0);
     StepCounter totalsteps = new StepCounter(0);
+
+    /**
+     * onCreate method brings all the data back from the save-file in sharedPreferences.
+     * Then it transforms the data back into the calorie and step calculators and to the arraylist through Google gson
+     * Finally it updates the screen with updateUI
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,11 +117,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
 
     }
+
+    /**
+     * Saving all the relevant information when taking the app from the foreground.
+     * First serializing the arraylist as a string and then saving all the values from the Calories calculator, stepcounter and the arraylist
+     * Lastly it updates the screen
+     */
     protected void onPause() {
         super.onPause();
         Gson gson = new Gson();
         String json = gson.toJson(ruoat);
-
         Log.i(TEST_MESSAGE, json);
         running = false;
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
@@ -127,10 +135,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         preferencesEditor.putInt(AVERAGE_CALORIES_KEY, calories.getAverageCount());
         preferencesEditor.putInt(DAILY_STEPS_KEY, dailysteps.stepsNow());
         preferencesEditor.putString(ARRAYLIST_KEY, json);
-        preferencesEditor.commit();
         preferencesEditor.putInt(TOTAL_STEPS_KEY, totalsteps.stepsNow());
-        //preferencesEditor.putStringSet(ARRAYLIST_KEY, oos.);
-        preferencesEditor.apply();
+        preferencesEditor.commit();
 
         updateUI();
     }
@@ -148,15 +154,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * Resets daily calories and steps counts in the Calories.java
+     * @param v button searched with onButtonClicked from the activity_main.xml
+     */
 
-
-    public void resetCaloriesButtonPressed(View v) {
+    public void resetDailiesButtonPressed(View v) {
         Log.i("Button", "Reset-button pressed");
         calories.resetDailyCalories();
         dailysteps.reset();
         updateUI();
     }
 
+    /**
+     * Sends the information inputted into the food-item and calories textviews
+     * The default values of the both textviews must be changed to be able to send the data.
+     * The data is sent into the Calories-class as well as to the Arraylist as a Ruoka-item.
+     * If both parameters are not changed, it will log an error message
+     * @param v  button searched with onButtonClicked from the activity_main.xml
+     */
     public void sendButtonPressed(View v){
         Log.i("Button", "Lähetä-nappia painettu");
         EditText editText = findViewById(R.id.foodBar);
@@ -176,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     /**
      * Updates the screen with daily steps and calories
      */
-
     @SuppressLint("SetTextI18n")
     public void updateUI(){
         TextView tv1 = findViewById(R.id.caloriesTodayCount);

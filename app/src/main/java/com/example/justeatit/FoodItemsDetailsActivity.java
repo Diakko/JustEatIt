@@ -18,6 +18,11 @@ public class FoodItemsDetailsActivity extends AppCompatActivity {
 
     Gson gson = new Gson();
 
+    /**
+     * Gets the information from the previous instance and transforms in back to arraylist where from picks up the correct input with the value i which is the number of the clicked object in the listview in previous instance
+     * Then it presents the Ruoka-object's values - foodItem's name, timestamp of the input and calorie value - in the screen
+     * @param savedInstanceState gets the instance from the previous instance(ProfileActivity in this case) so the values are possible to be retrieved
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
