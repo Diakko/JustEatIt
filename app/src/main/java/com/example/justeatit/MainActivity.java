@@ -173,21 +173,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         updateUI();
     }
 
-    public void profileButtonPressed(View v){
-
-        Log.i("Button", "Profiili-nappia painettu");
-        Intent intent = new Intent(this, ProfileActivity.class);
-        String message1 = calories.getDailyCountString();
-        String message2 = calories.getTotalCountString();
-        String message3 = calories.getAverageCountString();
-        String dailystepcount = "" + dailysteps.stepsNow();
-        intent.putExtra(EXTRA_MESSAGE1, message1);
-        intent.putExtra(EXTRA_MESSAGE2, message2);
-        intent.putExtra(EXTRA_MESSAGE3, message3);
-        intent.putExtra(EXTRA_MESSAGE4, dailystepcount);
-
-        startActivity(intent);
-    }
+    /**
+     * Updates the screen with daily steps and calories
+     */
 
     @SuppressLint("SetTextI18n")
     public void updateUI(){
