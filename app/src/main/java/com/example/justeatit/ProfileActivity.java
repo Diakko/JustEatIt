@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
     StepCounter dailySteps2 = new StepCounter(0);
     StepCounter totalSteps2 = new StepCounter(0);
     SensorManager sensorManager;
-    boolean running = false;
+    //boolean running = false;
 
 
     ArrayList<Ruoka> ruoat = new ArrayList<>();
@@ -96,12 +96,21 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
                 startActivity(nextActivity);
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //running = true;
+        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if (countSensor != null){
+            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+        } else {
+            Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        Button backButton = findViewById(R.id.back);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    public void backButtonPressed(View v){
                 int dailyBack = dailySteps2.stepsNow();
                 int totalBack = totalSteps2.stepsNow();
 
@@ -111,21 +120,8 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
 
                 setResult(RESULT_OK, resultIntent);
                 finish();
-            }
-        });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        running = true;
-        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null){
-            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-        } else {
-            Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
-        }
-    }
     @Override
     public void onSensorChanged(SensorEvent sensor){
         totalSteps2.addStep();
