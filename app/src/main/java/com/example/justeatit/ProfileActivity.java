@@ -156,8 +156,10 @@ import java.util.ArrayList;
         TextView tv3 = findViewById(R.id.stepsToday);
         TextView tv4 = findViewById(R.id.stepsTotal);
 
-        tv3.setText(""+dailySteps2.stepsNow());
-        tv4.setText(""+totalSteps2.stepsNow());
+        String totalSteps = Integer.toString(totalSteps2.stepsNow());
+        String dailySteps = Integer.toString(dailySteps2.stepsNow());
+        tv3.setText(dailySteps);
+        tv4.setText(totalSteps);
     }
 
     /**

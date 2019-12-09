@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         calories = new Calories(dailyCal, totalCal, averageCal);
         dailysteps.setValue(mPreferences.getInt(DAILY_STEPS_KEY, 0));
         totalsteps.setValue(mPreferences.getInt(TOTAL_STEPS_KEY, 0));
-        dailystepcounter = (TextView) findViewById(R.id.dailystepcounter);
+        dailystepcounter = findViewById(R.id.dailystepcounter);
         updateUI();
 
     }
@@ -208,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Toast.makeText(this, "Add item and calories!", Toast.LENGTH_SHORT).show();
         }
         updateUI();
+
     }
 
     /**
@@ -248,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    @SuppressLint("SetTextI18n")
     /**
      * SensorEventListener implement needs this method.
      * Method is called when sensor detects changes.
