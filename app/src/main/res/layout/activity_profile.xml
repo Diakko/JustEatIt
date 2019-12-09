@@ -13,7 +13,7 @@
         android:layout_height="35dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesCount"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/caloriesTotalText"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -25,7 +25,7 @@
         android:layout_marginTop="80dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesTodayText"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_height="35dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesCount"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/caloriesTodayText"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -48,7 +48,7 @@
         android:layout_marginTop="24dp"
         android:background="@color/backgroundColor"
         android:text="@string/caloriesTotalText"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caloriesTodayText" />
@@ -59,7 +59,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
         android:text="@string/steps"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caloriesTotalText" />
@@ -71,7 +71,7 @@
         android:layout_marginStart="62dp"
         android:layout_marginLeft="62dp"
         android:text="@string/stepCounter"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
         android:text="@string/totalSteps"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -110,7 +110,7 @@
         android:layout_width="175dp"
         android:layout_height="35dp"
         android:text="@string/stepCounter"
-        android:textColor="#000000"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -119,6 +119,7 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/buttonBackground"
         android:onClick="backButtonPressed"
         android:text="@string/back"
         app:layout_constraintStart_toStartOf="parent"

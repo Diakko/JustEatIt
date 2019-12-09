@@ -1,7 +1,7 @@
 package com.example.justeatit;
 
 /**
- * (c) Samuel Ahjoniemi
+ * @Author  Samuel Ahjoniemi
  */
 public class StepCounter {
     /**

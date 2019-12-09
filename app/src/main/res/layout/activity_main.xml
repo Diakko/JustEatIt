@@ -27,6 +27,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:text="@string/caloriesCount"
+        android:textColor="@color/whiteText"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/calories"
         app:layout_constraintStart_toEndOf="@+id/calories" />
@@ -42,6 +43,7 @@
         android:ems="10"
         android:inputType="text"
         android:text="@string/foodBar"
+        android:textColor="@color/whiteText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendButton"
         app:layout_constraintHorizontal_bias="0.148"
@@ -55,6 +57,7 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="32dp"
         android:text="@string/caloriesTodayText"
+        android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,6 +69,7 @@
         android:ems="10"
         android:inputType="numberSigned"
         android:text="@string/insertCalories"
+        android:textColor="@color/whiteText"
         app:layout_constraintBaseline_toBaselineOf="@+id/foodBar"
         app:layout_constraintEnd_toStartOf="@+id/sendButton"
         app:layout_constraintStart_toEndOf="@+id/foodBar" />
@@ -99,6 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/steps"
+        android:textColor="@color/whiteText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"

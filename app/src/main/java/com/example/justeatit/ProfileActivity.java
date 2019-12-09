@@ -27,7 +27,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * (C) Samuel Ahjoniemi
+ * @Author  Samuel Ahjoniemi
  */
 public class ProfileActivity extends AppCompatActivity implements SensorEventListener {
     StepCounter dailySteps2 = new StepCounter(0);

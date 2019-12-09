@@ -2,7 +2,7 @@ package com.example.justeatit;
 
 import androidx.annotation.NonNull;
 /**
- * (C) Matias Hätönen
+ * @Author  Matias Hätönen
  * Creates an object Ruoka to be saved into the arraylist<Ruoka>
  */
 public class Ruoka {

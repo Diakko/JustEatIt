@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * (C) Matias Hätönen & Samuel Ahjoniemi
+ * @Author Matias Hätönen & Samuel Ahjoniemi
  */
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
