@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/caloriesTodayText"
-        android:layout_width="175dp"
+        android:layout_width="190dp"
         android:layout_height="35dp"
         android:layout_marginTop="80dp"
         android:background="@color/backgroundColor"
@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/caloriesTotalText"
-        android:layout_width="175dp"
+        android:layout_width="190dp"
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
         android:background="@color/backgroundColor"
@@ -54,8 +54,8 @@
         app:layout_constraintTop_toBottomOf="@+id/caloriesTodayText" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="175dp"
+        android:id="@+id/dailyStepsText"
+        android:layout_width="190dp"
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
         android:text="@string/steps"
@@ -71,7 +71,7 @@
         android:text="@string/stepCounter"
         android:textColor="@color/whiteText"
         android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/dailyStepsText"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
@@ -92,15 +92,15 @@
     ]]>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="175dp"
+        android:id="@+id/totalStepsText"
+        android:layout_width="190dp"
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
         android:text="@string/totalSteps"
         android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/dailyStepsText" />
 
     <TextView
         android:id="@+id/stepsTotal"
@@ -109,7 +109,7 @@
         android:text="@string/stepCounter"
         android:textColor="@color/whiteText"
         android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/totalStepsText"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
