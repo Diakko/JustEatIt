@@ -68,14 +68,11 @@
         android:id="@+id/stepsToday"
         android:layout_width="175dp"
         android:layout_height="35dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
         android:text="@string/stepCounter"
         android:textColor="@color/whiteText"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
         android:id="@+id/foodItemsLayout"
