@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 /**
+ * The class FoodItemsDetailsActivity represents our third activity
  * @author  Matias Hätönen
  */
 public class FoodItemsDetailsActivity extends AppCompatActivity {

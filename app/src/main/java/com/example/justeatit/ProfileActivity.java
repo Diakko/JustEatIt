@@ -27,6 +27,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
+ * The class ProfileActivity represents our second activity screen
  * @author  Samuel Ahjoniemi
  */
     public class ProfileActivity extends AppCompatActivity implements SensorEventListener {
@@ -40,10 +41,11 @@ import java.util.ArrayList;
     public static final String EXTRA3 = "Activity3";
 
     /**
-     * @param savedInstanceState gets the instance from the previous instance(MainActivity in this case) so the values are possible to be retrieved
      * onCreate method brings all the data from the last activity with intent mechanism
-     * Sets data into new classes.
-     * Finally it updates the screen.
+     * Sets data into new classes
+     * * Finally it updates screen
+     * @param savedInstanceState gets the instance from the previous instance (MainActivity in this case)
+     * so the values are possible to be retrieved
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,8 +128,8 @@ import java.util.ArrayList;
 
     /**
      * Method is used to get back to MainActivity.
+     * Data is transferred back to MainActivity with intent mechanism with Result.
      * @param v button searched with onButtonClicked from the activity_main.xml.
-     * Data is transferred back with intent mechanism.
      */
     public void backButtonPressed(View v){
                 int dailyBack = dailySteps2.stepsNow();
@@ -142,11 +144,10 @@ import java.util.ArrayList;
     }
 
     /**
+     * Method is called when sensor detects changes and is used to add steps and update the view.
      * SensorEventListener implement needs this method.
-     * Method is called when sensor detects changes.
-     * Method is used to add steps and update view.
-     * @param sensor SensorEvent values of event, which we didn't use.
      * Tutorial used to implement step counting sensors <a href="https://www.youtube.com/watch?v=pDz8y5B8GsE">https://www.youtube.com/watch?v=pDz8y5B8GsE</a>
+     * @param sensor SensorEvent values of event, which we didn't use.
      */
     @Override
     public void onSensorChanged(SensorEvent sensor){

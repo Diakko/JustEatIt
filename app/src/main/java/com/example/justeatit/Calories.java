@@ -1,6 +1,7 @@
 package com.example.justeatit;
 
 /**
+ * The class Calories represents calories of our app
  * @author Matias Hätönen
  */
 public class Calories {
@@ -19,7 +20,8 @@ public class Calories {
     }
 
     /**
-     * Method is used to add @param calories amount of calories into dailyCount and totalCount.
+     * Method is used to add calories
+     * @param calories int add the amount into dailyCount and totalCount
      */
     public void addCalories(int calories){
         this.dailyCount += calories;
@@ -27,7 +29,7 @@ public class Calories {
     }
 
     /**
-     * Method is used to reset dailyCount to 0.
+     * Method is used to reset dailyCount value to 0.
      */
     public void resetDailyCalories(){
         this.dailyCount = 0;
@@ -35,7 +37,7 @@ public class Calories {
 
     /**
      * Method is used to get int data of dailyCount
-     * @return returns int of dailyCount
+     * @return returns int value of dailyCount
      */
     public int getDailyCount(){
         return this.dailyCount;
@@ -43,7 +45,7 @@ public class Calories {
 
     /**
      * Method is used to get int data of totalCount
-     * @return returns int of totalCount
+     * @return returns int value of totalCount
      */
     public int getTotalCount(){
         return this.totalCount;
@@ -51,7 +53,7 @@ public class Calories {
 
     /**
      * Method is used to get int data of averageCount
-     * @return returns int of totalCount
+     * @return returns int value of totalCount
      */
     public int getAverageCount(){
         return this.averageCount;
@@ -59,7 +61,7 @@ public class Calories {
 
     /**
      * Method is used to get String data of averageCount
-     * @return returns String of averageCount
+     * @return returns String value of averageCount
      */
     public String getAverageCountString(){
         return Integer.toString(this.averageCount);
@@ -67,7 +69,7 @@ public class Calories {
 
     /**
      * Method is used to get String data of totalCount
-     * @return returns String of totalCount
+     * @return returns String value of totalCount
      */
     public String getTotalCountString(){
         return Integer.toString(this.totalCount);
@@ -75,7 +77,7 @@ public class Calories {
 
     /**
      * Method is used to get String data of dailyCount
-     * @return returns String of dailyCount
+     * @return returns String value of dailyCount
      */
     public String getDailyCountString(){
         return Integer.toString(this.dailyCount);

@@ -2,6 +2,7 @@ package com.example.justeatit;
 
 import androidx.annotation.NonNull;
 /**
+ * The class Ruoka represensts our items/foods in our app.
  * @author  Matias Hätönen
  */
 public class Ruoka {
@@ -41,10 +42,10 @@ public class Ruoka {
     public String getAika(){return this.aika;}
 
 
-    @NonNull
-    @Override
     /**
      * toString method which returns a String value to the listview in profileActivity to be scrolled.
      */
+    @NonNull
+    @Override
     public String toString() {return "Timestamp: " + this.aika + " Food: " + this.ruoka;}
 }

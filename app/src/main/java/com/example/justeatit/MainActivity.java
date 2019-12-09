@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
+ * The class MainActivity represents our first activity screen
  * @author Matias Hätönen & Samuel Ahjoniemi
  */
 
@@ -135,9 +136,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     /**
-     * Resets daily calories and steps counts in the Calories.java if alertDialog gets "Yes"
-     * @param v button searched with onButtonClicked from the activity_main.xml
+     * Resets daily calories and daily steps counts in the Calories.java and in the StepCounter.java if alertDialog gets "Yes"
      * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
+     * @param v button searched with onButtonClicked from the activity_main.xml
      */
 
     public void resetDailiesButtonPressed(View v) {
@@ -169,9 +170,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      * The default values of the both textviews must be changed to be able to send the data.
      * The data is sent into the Calories-class as well as to the Arraylist as a Ruoka-item if
      * data is confirmed by user using alertDialog.
+     * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
      * If both parameters are not changed, it will log an error message and pop toast text.
      * @param v  button searched with onButtonClicked from the activity_main.xml
-     * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
      */
     public void sendButtonPressed(View v){
         Log.i("Button", "Lähetä-nappia painettu");
@@ -211,12 +212,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     /**
-     * Method is used to get into next activity.
+     * Method is used to get into next activity with button.
      * All information is transferred with intent mechanism.
-     * @param v button searched with onButtonClicked from the activity_main.xml
      * Starts new activity with startActivityForResult
      * startActivityForResult is done with help of tutorial <a href="https://www.youtube.com/watch?v=AD5qt7xoUU8">https://www.youtube.com/watch?v=AD5qt7xoUU8</a>
+     * @param v button searched with onButtonClicked from the activity_main.xml
      */
+
     public void profileButtonPressed(View v){
                 Log.i("Button", "Profiili-nappia painettu");
                 Gson gson = new Gson();
@@ -247,15 +249,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         dailystepcounter.setText(""+dailysteps.stepsNow());
 
     }
-
-    @SuppressLint("SetTextI18n")
     /**
+     * Method is called when sensor detects changes and is used to add steps and update the view.
      * SensorEventListener implement needs this method.
-     * Method is called when sensor detects changes.
-     * Method is used to add steps and update view.
-     * @param event SensorEvent values of event, which we didn't use.
      * Tutorial used to implement step counting sensors <a href="https://www.youtube.com/watch?v=pDz8y5B8GsE">https://www.youtube.com/watch?v=pDz8y5B8GsE</a>
+     * @param event SensorEvent values of event, which we didn't use.
      */
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
         dailysteps.addStep();
@@ -275,11 +275,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     /**
      * Method is called when returning from last activity.
+     * Data is used to update this activity
+     * If error happens method will log it.
      * @param requestCode RequestCode from last activity
      * @param resultCode ResultCode from last activity
      * @param data Intent from last activity
-     * Data is used to update this activity
-     * If error happens method will log it.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
