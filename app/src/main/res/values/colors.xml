@@ -7,4 +7,5 @@
     <color name="buttonBackground">#FF4400</color>
     <color name="textColor">#000000</color>
     <color name="whiteText">#FFFFFF</color>
+    <color name="backgroundColorDark">#00006f</color>
 </resources>
