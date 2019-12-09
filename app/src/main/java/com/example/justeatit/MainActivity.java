@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     TextView dailystepcounter;
     SensorManager sensorManager;
-    //boolean running = false;
 
     private final static String DAILY_CALORIES_KEY = "Daily_calories";
     private final static String TOTAL_CALORIES_KEY = "Total_Calories";
@@ -107,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Gson gson = new Gson();
         String json = gson.toJson(ruoat);
         Log.i(TEST_MESSAGE, json);
-        //running = false;
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         preferencesEditor.putInt(DAILY_CALORIES_KEY, calories.getDailyCount());
         preferencesEditor.putInt(TOTAL_CALORIES_KEY, calories.getTotalCount());
@@ -120,11 +118,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         updateUI();
     }
 
+
+    /**
+     * onResume method search and register right sensor from device
+     * if there is no sensor called STEP_COUNTER app tells "Sensor not found" to the user.
+     */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onResume() {
         super.onResume();
-        //running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (countSensor != null){
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
@@ -134,8 +136,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     /**
-     * Resets daily calories and steps counts in the Calories.java
+     * Resets daily calories and steps counts in the Calories.java if alertDialog gets "Yes"
      * @param v button searched with onButtonClicked from the activity_main.xml
+     * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
      */
 
     public void resetDailiesButtonPressed(View v) {
@@ -160,19 +163,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-       /* calories.resetDailyCalories();
-        dailysteps.reset();
-        updateUI(); */
     }
 
     /**
      * Sends the information inputted into the food-item and calories textviews
      * The default values of the both textviews must be changed to be able to send the data.
-     * The data is sent into the Calories-class as well as to the Arraylist as a Ruoka-item.
-     * If both parameters are not changed, it will log an error message
+     * The data is sent into the Calories-class as well as to the Arraylist as a Ruoka-item if
+     * data is confirmed by user using alertDialog.
+     * If both parameters are not changed, it will log an error message and pop toast text.
      * @param v  button searched with onButtonClicked from the activity_main.xml
-     *
-     *
+     * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
      */
     public void sendButtonPressed(View v){
         Log.i("Button", "Lähetä-nappia painettu");
@@ -188,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int i) {
-
                     calories.addCalories(caloriesSent);
                     Log.i(TIME_OF_CLICK, currentDateandTime);;
                     ruoat.add(new Ruoka(currentDateandTime, foodRead, caloriesSent));
@@ -206,21 +205,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             alertDialog.show();
         }   else {
             Log.d(ERROR_MESSAGE, "No calories and/or item");
+            Toast.makeText(this, "Add item and calories!", Toast.LENGTH_SHORT).show();
         }
         updateUI();
-
-
-        /*    int caloriesSent = Integer.parseInt(editText1.getText().toString());
-        if (caloriesSent > 0 && !foodRead.equals("[Insert food]")){
-            calories.addCalories(caloriesSent);
-            Log.i(TIME_OF_CLICK, currentDateandTime);;
-            ruoat.add(new Ruoka(currentDateandTime, foodRead, caloriesSent));
-        }   else {
-            Log.d(ERROR_MESSAGE, "No calories and/or item");
-        }
-        updateUI(); */
     }
 
+    /**
+     * Method is used to get into next activity.
+     * All information is transferred with intent mechanism.
+     * @param v button searched with onButtonClicked from the activity_main.xml
+     * Starts new activity with startActivityForResult
+     * startActivityForResult is done with help of tutorial <a href="https://www.youtube.com/watch?v=AD5qt7xoUU8">https://www.youtube.com/watch?v=AD5qt7xoUU8</a>
+     */
     public void profileButtonPressed(View v){
                 Log.i("Button", "Profiili-nappia painettu");
                 Gson gson = new Gson();
@@ -252,20 +248,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    //Lisää askeleen aina kun puhelimen sensori huomaa askeleen
-    @SuppressLint("SetTextI18n")
+    /**
+     * SensorEventListener implement needs this method.
+     * Method is called when sensor detects changes.
+     * Method is used to add steps and update view.
+     * @param event SensorEvent values of event, which we didn't use.
+     * Tutorial used to implement step counting sensors <a href="https://www.youtube.com/watch?v=pDz8y5B8GsE">https://www.youtube.com/watch?v=pDz8y5B8GsE</a>
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         dailysteps.addStep();
         totalsteps.addStep();
-        dailystepcounter.setText(""+dailysteps.stepsNow());
+        updateUI();
     }
 
+    /**
+     * SensorEventListener implement needs this method.
+     * @param sensor What sensor is used
+     * @param accuracy Accuracy of sensor data
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy){
 
     }
 
+    /**
+     * Method is called when returning from last activity.
+     * @param requestCode RequestCode from last activity
+     * @param resultCode ResultCode from last activity
+     * @param data Intent from last activity
+     * Data is used to update this activity
+     * If error happens method will log it.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -277,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 dailysteps.setValue(dailyBack);
                 totalsteps.setValue(totalBack);
             }if (resultCode == RESULT_CANCELED){
-                setTitle("VIRHE TAPAHTUNUT");
+                Log.i("Virhe", "Virhe activityn muutoksessa");
             }
         }
     }

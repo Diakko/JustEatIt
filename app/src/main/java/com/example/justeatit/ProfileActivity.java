@@ -29,18 +29,22 @@ import java.util.ArrayList;
 /**
  * @Author  Samuel Ahjoniemi
  */
-public class ProfileActivity extends AppCompatActivity implements SensorEventListener {
+    public class ProfileActivity extends AppCompatActivity implements SensorEventListener {
     StepCounter dailySteps2 = new StepCounter(0);
     StepCounter totalSteps2 = new StepCounter(0);
     SensorManager sensorManager;
-    //boolean running = false;
-
-
     ArrayList<Ruoka> ruoat = new ArrayList<>();
     private static final String TAG = "List_Item";
     public static final String EXTRA1 = "Activity1";
     public static final String EXTRA2 = "Activity2";
     public static final String EXTRA3 = "Activity3";
+
+    /**
+     * @param savedInstanceState gets the instance from the previous instance(MainActivity in this case) so the values are possible to be retrieved
+     * onCreate method brings all the data from the last activity with intent mechanism
+     * Sets data into new classes.
+     * Finally it updates the screen.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         int number2 = intent.getIntExtra(MainActivity.EXTRA_MESSAGE5,0);
         final String message4 = intent.getStringExtra(MainActivity.EXTRA_MESSAGE6);
 
+        //Vähennetään yhdet koska sovellus lisäsi aina yhden joka activityn vaihdon jälkeen.
         number1 -= 1;
         number2 -= 1;
 
@@ -87,6 +92,12 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         ));
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            /**
+             * Method is called when item from listView is clicked
+             * Starts new activity with startActivity
+             */
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick(" + i + ")");
@@ -98,10 +109,13 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         });
     }
 
+    /**
+     * onResume method search and register right sensor from device
+     * if there is no sensor called STEP_COUNTER app tells "Sensor not found" to the user.
+     */
     @Override
     protected void onResume() {
         super.onResume();
-        //running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (countSensor != null){
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
@@ -110,6 +124,11 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         }
     }
 
+    /**
+     * Method is used to get back to MainActivity.
+     * @param v button searched with onButtonClicked from the activity_main.xml.
+     * Data is transferred back with intent mechanism.
+     */
     public void backButtonPressed(View v){
                 int dailyBack = dailySteps2.stepsNow();
                 int totalBack = totalSteps2.stepsNow();
@@ -122,6 +141,13 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
                 finish();
     }
 
+    /**
+     * SensorEventListener implement needs this method.
+     * Method is called when sensor detects changes.
+     * Method is used to add steps and update view.
+     * @param sensor SensorEvent values of event, which we didn't use.
+     * Tutorial used to implement step counting sensors <a href="https://www.youtube.com/watch?v=pDz8y5B8GsE">https://www.youtube.com/watch?v=pDz8y5B8GsE</a>
+     */
     @Override
     public void onSensorChanged(SensorEvent sensor){
         totalSteps2.addStep();
@@ -133,9 +159,14 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         tv3.setText(""+dailySteps2.stepsNow());
         tv4.setText(""+totalSteps2.stepsNow());
     }
+
+    /**
+     * SensorEventListener implement needs this method.
+     * @param sensor What sensor is used
+     * @param accuracy Accuracy of sensor data
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy){
-
 
     }
 }
