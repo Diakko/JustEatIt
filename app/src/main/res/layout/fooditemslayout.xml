@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- @author Matias Hätönen -->
 <TextView
     android:textSize="15sp"
     android:layout_width="wrap_content"
