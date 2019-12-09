@@ -1,7 +1,7 @@
 package com.example.justeatit;
 
 /**
- * (c) Matias Hätönen
+ * @author Matias Hätönen
  */
 public class Calories {
     private int dailyCount, totalCount, averageCount;

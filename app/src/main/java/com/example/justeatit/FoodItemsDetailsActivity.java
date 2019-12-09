@@ -11,7 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 /**
- * @Author  Matias Hätönen
+ * @author  Matias Hätönen
  */
 public class FoodItemsDetailsActivity extends AppCompatActivity {
     ArrayList<Ruoka> ruoat = new ArrayList<>();
