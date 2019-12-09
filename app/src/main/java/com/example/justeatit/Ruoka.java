@@ -3,7 +3,6 @@ package com.example.justeatit;
 import androidx.annotation.NonNull;
 /**
  * @author  Matias Hätönen
- * Creates an object Ruoka to be saved into the arraylist<Ruoka>
  */
 public class Ruoka {
     private String ruoka;
@@ -11,6 +10,7 @@ public class Ruoka {
     private String aika;
 
     /**
+     * Creates an object Ruoka to be saved into the arraylist<Ruoka>
      * Saves the values inputted in the call into the object
      * @param aika timestamp value from when the send button is pressed
      * @param ruoka food item which is inputted
