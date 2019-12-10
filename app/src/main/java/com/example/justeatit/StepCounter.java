@@ -2,7 +2,8 @@ package com.example.justeatit;
 
 /**
  * The class StepCounter represents steps of our app.
- * @author  Samuel Ahjoniemi
+ *
+ * @author Samuel Ahjoniemi
  */
 public class StepCounter {
     /**
@@ -12,6 +13,7 @@ public class StepCounter {
 
     /**
      * Constructor of StepCounter class
+     *
      * @param start This is parameter for StepCounter and sets value of steps.
      */
     public StepCounter(int start) {
@@ -20,6 +22,7 @@ public class StepCounter {
 
     /**
      * step setter method
+     *
      * @param luku This parameter sets steps.
      */
     public void setValue(int luku) {
@@ -28,6 +31,7 @@ public class StepCounter {
 
     /**
      * get the step count.
+     *
      * @return int This returns current int value of steps.
      */
 

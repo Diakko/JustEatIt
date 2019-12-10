@@ -10,9 +10,11 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 /**
  * The class FoodItemsDetailsActivity represents our third activity
- * @author  Matias Hätönen
+ *
+ * @author Matias Hätönen
  */
 public class FoodItemsDetailsActivity extends AppCompatActivity {
     ArrayList<Ruoka> ruoat = new ArrayList<>();
@@ -22,6 +24,7 @@ public class FoodItemsDetailsActivity extends AppCompatActivity {
     /**
      * Gets the information from the previous instance and transforms in back to arraylist where from picks up the correct input with the value i which is the number of the clicked object in the listview in previous instance
      * Then it presents the Ruoka-object's values - foodItem's name, timestamp of the input and calorie value - in the screen
+     *
      * @param savedInstanceState gets the instance from the previous instance(ProfileActivity in this case) so the values are possible to be retrieved
      */
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,9 @@ public class FoodItemsDetailsActivity extends AppCompatActivity {
         int i = b.getInt(ProfileActivity.EXTRA2, 0);
 
 
-        if(!json.equals("")) {
-            Type type = new TypeToken<ArrayList<Ruoka>>(){}.getType();
+        if (!json.equals("")) {
+            Type type = new TypeToken<ArrayList<Ruoka>>() {
+            }.getType();
             ruoat = gson.fromJson(json, type);
         }
 

@@ -32,6 +32,7 @@ import java.util.Locale;
 
 /**
  * The class MainActivity represents our first activity screen
+ *
  * @author Matias Hätönen & Samuel Ahjoniemi
  */
 
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     /**
      * Resets daily calories and daily steps counts in the Calories.java and in the StepCounter.java if alertDialog gets "Yes"
      * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
+     *
      * @param v button searched with onButtonClicked from the activity_main.xml
      */
 
@@ -173,24 +175,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      * data is confirmed by user using alertDialog.
      * alertDialog is done with help of tutorial <a href="https://www.youtube.com/watch?v=7CnhC5-68i4">https://www.youtube.com/watch?v=7CnhC5-68i4</a>
      * If both parameters are not changed, it will log an error message and pop toast text.
-     * @param v  button searched with onButtonClicked from the activity_main.xml
+     *
+     * @param v button searched with onButtonClicked from the activity_main.xml
      */
-    public void sendButtonPressed(View v){
+    public void sendButtonPressed(View v) {
         Log.i("Button", "Lähetä-nappia painettu");
         EditText editText = findViewById(R.id.foodBar);
         final String foodRead = editText.getText().toString();
         EditText editText1 = findViewById(R.id.insertCalories);
 
         final int caloriesSent = Integer.parseInt(editText1.getText().toString());
-        if (caloriesSent > 0 && !foodRead.equals("[Insert food]")){
+        if (caloriesSent > 0 && !foodRead.equals("[Insert food]")) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Item: " + foodRead + "\n" + caloriesSent + " calories" );
+            builder.setMessage("Item: " + foodRead + "\n" + caloriesSent + " calories");
             builder.setCancelable(true);
             builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int i) {
                     calories.addCalories(caloriesSent);
-                    Log.i(TIME_OF_CLICK, currentDateandTime);;
+                    Log.i(TIME_OF_CLICK, currentDateandTime);
+                    ;
                     ruoat.add(new Ruoka(currentDateandTime, foodRead, caloriesSent));
                     dialog.cancel();
                     updateUI();
@@ -204,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }   else {
+        } else {
             Log.d(ERROR_MESSAGE, "No calories and/or item");
             Toast.makeText(this, "Add item and calories!", Toast.LENGTH_SHORT).show();
         }
@@ -217,26 +221,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      * All information is transferred with intent mechanism.
      * Starts new activity with startActivityForResult
      * startActivityForResult is done with help of tutorial <a href="https://www.youtube.com/watch?v=AD5qt7xoUU8">https://www.youtube.com/watch?v=AD5qt7xoUU8</a>
+     *
      * @param v button searched with onButtonClicked from the activity_main.xml
      */
 
-    public void profileButtonPressed(View v){
-                Log.i("Button", "Profiili-nappia painettu");
-                Gson gson = new Gson();
-                String json = gson.toJson(ruoat);
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                String message1 = calories.getDailyCountString();
-                String message2 = calories.getTotalCountString();
-                String message3 = calories.getAverageCountString();
-                int dailyStepCount = dailysteps.stepsNow();
-                int totalStepCount = totalsteps.stepsNow();
-                intent.putExtra(EXTRA_MESSAGE1, message1);
-                intent.putExtra(EXTRA_MESSAGE2, message2);
-                intent.putExtra(EXTRA_MESSAGE3, message3);
-                intent.putExtra(EXTRA_MESSAGE4, dailyStepCount);
-                intent.putExtra(EXTRA_MESSAGE5, totalStepCount);
-                intent.putExtra(EXTRA_MESSAGE6, json);
-                startActivityForResult(intent, 1);
+    public void profileButtonPressed(View v) {
+        Log.i("Button", "Profiili-nappia painettu");
+        Gson gson = new Gson();
+        String json = gson.toJson(ruoat);
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        String message1 = calories.getDailyCountString();
+        String message2 = calories.getTotalCountString();
+        String message3 = calories.getAverageCountString();
+        int dailyStepCount = dailysteps.stepsNow();
+        int totalStepCount = totalsteps.stepsNow();
+        intent.putExtra(EXTRA_MESSAGE1, message1);
+        intent.putExtra(EXTRA_MESSAGE2, message2);
+        intent.putExtra(EXTRA_MESSAGE3, message3);
+        intent.putExtra(EXTRA_MESSAGE4, dailyStepCount);
+        intent.putExtra(EXTRA_MESSAGE5, totalStepCount);
+        intent.putExtra(EXTRA_MESSAGE6, json);
+        startActivityForResult(intent, 1);
     }
 
 
@@ -244,16 +249,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      * Updates the screen with daily steps and calories
      */
     @SuppressLint("SetTextI18n")
-    public void updateUI(){
+    public void updateUI() {
         TextView tv1 = findViewById(R.id.caloriesTodayCount);
         tv1.setText(calories.getDailyCountString());
-        dailystepcounter.setText(""+dailysteps.stepsNow());
+        dailystepcounter.setText("" + dailysteps.stepsNow());
 
     }
+
     /**
      * Method is called when sensor detects changes and is used to add steps and update the view.
      * SensorEventListener implement needs this method.
      * Tutorial used to implement step counting sensors <a href="https://www.youtube.com/watch?v=pDz8y5B8GsE">https://www.youtube.com/watch?v=pDz8y5B8GsE</a>
+     *
      * @param event SensorEvent values of event, which we didn't use.
      */
     @SuppressLint("SetTextI18n")
@@ -266,11 +273,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     /**
      * SensorEventListener implement needs this method.
-     * @param sensor What sensor is used
+     *
+     * @param sensor   What sensor is used
      * @param accuracy Accuracy of sensor data
      */
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy){
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 
@@ -278,21 +286,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      * Method is called when returning from last activity.
      * Data is used to update this activity
      * If error happens method will log it.
+     *
      * @param requestCode RequestCode from last activity
-     * @param resultCode ResultCode from last activity
-     * @param data Intent from last activity
+     * @param resultCode  ResultCode from last activity
+     * @param data        Intent from last activity
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1){
+        if (requestCode == 1) {
             if (requestCode == RESULT_OK) {
                 int dailyBack = data.getIntExtra("number1", 0);
                 int totalBack = data.getIntExtra("number2", 0);
                 dailysteps.setValue(dailyBack);
                 totalsteps.setValue(totalBack);
-            }if (resultCode == RESULT_CANCELED){
+            }
+            if (resultCode == RESULT_CANCELED) {
                 Log.i("Virhe", "Virhe activityn muutoksessa");
             }
         }

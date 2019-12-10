@@ -28,9 +28,10 @@ import java.util.ArrayList;
 
 /**
  * The class ProfileActivity represents our second activity screen
- * @author  Samuel Ahjoniemi
+ *
+ * @author Samuel Ahjoniemi & Matias Hätönen
  */
-    public class ProfileActivity extends AppCompatActivity implements SensorEventListener {
+public class ProfileActivity extends AppCompatActivity implements SensorEventListener {
     StepCounter dailySteps2 = new StepCounter(0);
     StepCounter totalSteps2 = new StepCounter(0);
     SensorManager sensorManager;
@@ -44,8 +45,9 @@ import java.util.ArrayList;
      * onCreate method brings all the data from the last activity with intent mechanism
      * Sets data into new classes
      * * Finally it updates screen
+     *
      * @param savedInstanceState gets the instance from the previous instance (MainActivity in this case)
-     * so the values are possible to be retrieved
+     *                           so the values are possible to be retrieved
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +60,8 @@ import java.util.ArrayList;
         String message1 = intent.getStringExtra(MainActivity.EXTRA_MESSAGE1);
         String message2 = intent.getStringExtra(MainActivity.EXTRA_MESSAGE2);
         String message3 = intent.getStringExtra(MainActivity.EXTRA_MESSAGE3);
-        int number1 = intent.getIntExtra(MainActivity.EXTRA_MESSAGE4,0);
-        int number2 = intent.getIntExtra(MainActivity.EXTRA_MESSAGE5,0);
+        int number1 = intent.getIntExtra(MainActivity.EXTRA_MESSAGE4, 0);
+        int number2 = intent.getIntExtra(MainActivity.EXTRA_MESSAGE5, 0);
         final String message4 = intent.getStringExtra(MainActivity.EXTRA_MESSAGE6);
 
         //Vähennetään yhdet koska sovellus lisäsi aina yhden joka activityn vaihdon jälkeen.
@@ -72,9 +74,9 @@ import java.util.ArrayList;
 
         TextView tv3 = findViewById(R.id.stepsToday);
         TextView tv4 = findViewById(R.id.stepsTotal);
-        tv3.setText(""+dailySteps2.stepsNow());
+        tv3.setText("" + dailySteps2.stepsNow());
 
-        tv4.setText(""+totalSteps2.stepsNow());
+        tv4.setText("" + totalSteps2.stepsNow());
 
 
         TextView tv1 = findViewById(R.id.caloriesTodayCount);
@@ -82,8 +84,9 @@ import java.util.ArrayList;
         TextView tv2 = findViewById(R.id.caloriesTotalCount);
         tv2.setText(message2);
         Gson gson = new Gson();
-        if(!message4.equals("")) {
-            Type type = new TypeToken<ArrayList<Ruoka>>(){}.getType();
+        if (!message4.equals("")) {
+            Type type = new TypeToken<ArrayList<Ruoka>>() {
+            }.getType();
             ruoat = gson.fromJson(message4, type);
         }
         ListView lv = findViewById(R.id.foodItemsLayout);
@@ -119,7 +122,7 @@ import java.util.ArrayList;
     protected void onResume() {
         super.onResume();
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null){
+        if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
@@ -128,29 +131,31 @@ import java.util.ArrayList;
 
     /**
      * Method is used to get back to MainActivity.
+     *
      * @param v button searched with onButtonClicked from the activity_main.xml.
-     * Data is transferred back with intent mechanism.
+     *          Data is transferred back with intent mechanism.
      */
-    public void backButtonPressed(View v){
-                int dailyBack = dailySteps2.stepsNow();
-                int totalBack = totalSteps2.stepsNow();
+    public void backButtonPressed(View v) {
+        int dailyBack = dailySteps2.stepsNow();
+        int totalBack = totalSteps2.stepsNow();
 
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("paiva", dailyBack);
-                resultIntent.putExtra("koko", totalBack);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("paiva", dailyBack);
+        resultIntent.putExtra("koko", totalBack);
 
-                setResult(RESULT_OK, resultIntent);
-                finish();
+        setResult(RESULT_OK, resultIntent);
+        finish();
     }
 
     /**
      * Method is called when sensor detects changes and is used to add steps and update the view.
      * SensorEventListener implement needs this method.
      * Tutorial used to implement step counting sensors <a href="https://www.youtube.com/watch?v=pDz8y5B8GsE">https://www.youtube.com/watch?v=pDz8y5B8GsE</a>
+     *
      * @param sensor SensorEvent values of event, which we didn't use.
      */
     @Override
-    public void onSensorChanged(SensorEvent sensor){
+    public void onSensorChanged(SensorEvent sensor) {
         totalSteps2.addStep();
         dailySteps2.addStep();
 
@@ -165,11 +170,12 @@ import java.util.ArrayList;
 
     /**
      * SensorEventListener implement needs this method.
-     * @param sensor What sensor is used
+     *
+     * @param sensor   What sensor is used
      * @param accuracy Accuracy of sensor data
      */
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy){
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 }
