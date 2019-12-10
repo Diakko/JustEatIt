@@ -128,8 +128,8 @@ import java.util.ArrayList;
 
     /**
      * Method is used to get back to MainActivity.
-     * Data is transferred back to MainActivity with intent mechanism with Result.
      * @param v button searched with onButtonClicked from the activity_main.xml.
+     * Data is transferred back with intent mechanism.
      */
     public void backButtonPressed(View v){
                 int dailyBack = dailySteps2.stepsNow();

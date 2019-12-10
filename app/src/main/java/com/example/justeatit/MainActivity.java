@@ -83,8 +83,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int totalCal = mPreferences.getInt(TOTAL_CALORIES_KEY, 0);
         int averageCal = mPreferences.getInt(AVERAGE_CALORIES_KEY, 0);
         String json = mPreferences.getString(ARRAYLIST_KEY, "");
-        if(!json.equals("")) {
-            Type type = new TypeToken<ArrayList<Ruoka>>(){}.getType();
+        if (!json.equals("")) {
+            Type type = new TypeToken<ArrayList<Ruoka>>() {
+            }.getType();
             ruoat = gson.fromJson(json, type);
             Log.i(TEST_MESSAGE, ruoat.toString());
         }
@@ -128,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onResume() {
         super.onResume();
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null){
+        if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-        }else {
+        } else {
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
         }
     }
