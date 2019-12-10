@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 public void onClick(DialogInterface dialog, int i) {
                     calories.addCalories(caloriesSent);
                     Log.i(TIME_OF_CLICK, currentDateandTime);
-                    ;
+
                     ruoat.add(new Ruoka(currentDateandTime, foodRead, caloriesSent));
                     dialog.cancel();
                     updateUI();
@@ -250,9 +250,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      */
     @SuppressLint("SetTextI18n")
     public void updateUI() {
+        String dailySteps = Integer.toString(dailysteps.stepsNow());
         TextView tv1 = findViewById(R.id.caloriesTodayCount);
         tv1.setText(calories.getDailyCountString());
-        dailystepcounter.setText("" + dailysteps.stepsNow());
+        dailystepcounter.setText(dailySteps);
 
     }
 

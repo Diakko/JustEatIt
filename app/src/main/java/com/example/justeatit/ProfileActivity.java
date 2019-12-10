@@ -10,9 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.util.Log;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -39,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
     private static final String TAG = "List_Item";
     public static final String EXTRA1 = "Activity1";
     public static final String EXTRA2 = "Activity2";
-    public static final String EXTRA3 = "Activity3";
+    public static final String EXTRA3 = "Activity3"; // Tulevaisuutta varten säilytetään.
 
     /**
      * onCreate method brings all the data from the last activity with intent mechanism
@@ -71,12 +69,13 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         dailySteps2.setValue(number1);
         totalSteps2.setValue(number2);
 
+        String dailySteps = Integer.toString(dailySteps2.stepsNow());
+        String totalSteps = Integer.toString(totalSteps2.stepsNow());
 
         TextView tv3 = findViewById(R.id.stepsToday);
         TextView tv4 = findViewById(R.id.stepsTotal);
-        tv3.setText("" + dailySteps2.stepsNow());
-
-        tv4.setText("" + totalSteps2.stepsNow());
+        tv3.setText(dailySteps);
+        tv4.setText(totalSteps);
 
 
         TextView tv1 = findViewById(R.id.caloriesTodayCount);
